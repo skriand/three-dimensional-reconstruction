@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.auto-grid {
+  --auto-grid-max-columns: 4;
+  --auto-grid-min-size: 1rem;
+  --auto-grid-gap: 1rem;
+  --max-column-width: 100% / var(--auto-grid-max-columns, infinity) - var(--auto-grid-gap);
+  --column-width: max(
+    var(--max-column-width),
+    min(var(--auto-grid-min-size, 10rem), 100%)
+  );
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(var(--column-width), 1fr));
+
+  /* vertical gap falls back to general gap then falls back to 1rem*/
+  gap: var(--auto-grid-gap-vertical, var(--auto-grid-gap, 1rem))
+    var(--auto-grid-gap, 1rem);
+}
